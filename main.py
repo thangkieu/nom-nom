@@ -1,6 +1,9 @@
 import os
 import openai
 import streamlit as st
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Config
 st.set_page_config(layout="wide", 
@@ -21,9 +24,12 @@ nom_values = st.session_state['nom_values']
 col1, col2 = st.columns(2)
 
 with col1:
-    api_key = st.text_input('Enter OpenAI API KEY to start:')
+    api_key = os.environ.get('OPENAI_API_KEY')
     if not api_key:
-        st.stop()
+        api_key = st.text_input('Enter OpenAI API KEY to start:')
+        if not api_key:
+            st.stop()
+
     openai.api_key = api_key
 
     clicked = st.button('Add new NOM')
@@ -38,6 +44,7 @@ with col1:
 with col2:
     filterd_noms = [nom for nom in nom_values if nom]
     if filterd_noms:
+        st.subheader('Preview')
         st.code('\n----------\n'.join(filterd_noms))
     else:
         st.error('Add your NOMs and click Summarise')
