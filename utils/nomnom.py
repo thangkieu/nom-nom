@@ -25,11 +25,18 @@ def write_nomnom():
     is_generate = st.button(
         'Summarise NOMs', disabled=not noms, type="primary")
 
+    # ---- Generate prompt ----
     prompt = PromptTemplate(input_variables=["noms"], template=template)
     prompt_str = prompt.format(noms=noms)
+
+    # ---- Result ----
+    st.subheader('Result')
+    st_prompt_exp = st.expander('Prompt Template', False)
+    st_prompt_exp.info(template)
+
+    st_resp_exp = st.expander('Response', True)
 
     if is_generate:
         with st.spinner('Summarising...'):
             azure_resp = summarise(prompt_str)
-            st.subheader('Summarised NOM')
-            st.success(azure_resp)
+            st_resp_exp.success(azure_resp)
