@@ -13,6 +13,8 @@ def write_footer():
     hide_streamlit_style = """
                 <style>
                 footer {display: none;}
+                .stAlert {white-space:pre-wrap;}
+                .row-widget.stButton {text-align:right;}
                 </style>
                 """
 

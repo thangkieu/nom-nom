@@ -6,7 +6,7 @@ from utils.llm_models import summarise
 template = """
     You are an AI assistant that helps users combining and summarizing their meeting notes.
 
-    Combine and summarise the following meeting notes into one:
+    Combine and write a concise summary of the following meeting notes:
     {noms}
 
     Summarize in the following format:
