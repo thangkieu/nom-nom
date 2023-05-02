@@ -15,6 +15,7 @@ def write_footer():
                 footer {display: none;}
                 .stAlert {white-space:pre-wrap;}
                 .row-widget.stButton {text-align:right;}
+                .st-bk,[kind="primary"],[role="alert"],[data-baseweb="textarea"] {border-radius: 8px;}
                 </style>
                 """
 

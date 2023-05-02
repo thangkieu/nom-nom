@@ -22,11 +22,11 @@ def write_summarisation():
                                   height=200, label_visibility='collapsed')
 
     # ----- Configuration ----
-    st_config_exp = st.expander('Summarising\'s Configuration', False)
+    st_config_exp = st.expander('Summarisation\'s Configuration', False)
     tone = st_config_exp.radio(
-        'Tone', ('Formal', 'Neutral', 'Humour'), index=1, horizontal=True)
+        'Style of Summarisation', ('Professional', 'Neutral', 'Humourous'), index=1, horizontal=True)
     length = st_config_exp.number_input(
-        'Length (no. of words)', step=50, min_value=20, format='%d')
+        'Length (no. of words)', step=50, min_value=50, format='%d')
 
     is_summary_clicked = st.button(
         'Summarise Text', disabled=not text, type="primary")

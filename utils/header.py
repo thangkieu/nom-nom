@@ -1,9 +1,9 @@
 import streamlit as st
 
 
-def write_header():
+def write_header(heading: str, description: str):
     # Set Streamlit app theme
-    st.set_page_config(page_title="Summarisation",
+    st.set_page_config(page_title=heading,
                        page_icon="images/launchpad-icon.png", layout="centered")
 
     # Display logo image
@@ -11,13 +11,13 @@ def write_header():
     st.image(launchpad_icon, width=100)
 
     # Set up app title
-    st.title("Summarisation")
+    st.title(heading)
 
     # Display app information
     st.warning('**This application is in Alpha version**. You should avoid using it for general fact-finding and information retrieval and must never trust the responses completely.')
 
     # Add information section
-    with st.expander("Summarisation", False):
-        st.write('Application description here. Keep it to within 5 liners.')
+    with st.expander(f"{heading}'s Description".upper(), False):
+        st.write(description)
 
     # st.divider()
