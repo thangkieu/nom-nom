@@ -2,6 +2,7 @@ import os
 import streamlit as st
 from langchain import PromptTemplate
 from utils.llm_models import summarise
+from utils.feedbacks import render_feedbacks
 
 template = """
     You are an AI assistant that helps users combining and summarizing their meeting notes.
@@ -18,6 +19,9 @@ template = """
 
 
 def write_nomnom():
+    if not 'nom_response' in st.session_state:
+        st.session_state.nom_response = ""
+
     noms = ''
     with st.expander('Insert all of your NOMs here', True):
         noms = st.text_area('Separate by newline', height=200)
@@ -31,12 +35,18 @@ def write_nomnom():
 
     # ---- Result ----
     st.subheader('Result')
-    st_prompt_exp = st.expander('Prompt Template', False)
+    st_prompt_exp = st.expander('**ACTUAL PROMPT**', False)
     st_prompt_exp.info(template)
 
-    st_resp_exp = st.expander('Response', True)
+    st_resp_exp = st.expander('**RESPONSE**', True)
 
     if is_generate:
         with st.spinner('Summarising...'):
             azure_resp = summarise(prompt_str)
-            st_resp_exp.success(azure_resp)
+            st.session_state.nom_response = azure_resp
+
+    if st.session_state.nom_response:
+        st_resp_exp.success(st.session_state.nom_response)
+
+        render_feedbacks(label1="NOMNOM",
+                         label2=st.session_state.nom_response)

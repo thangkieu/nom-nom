@@ -14,8 +14,10 @@ def write_footer():
                 <style>
                 footer {display: none;}
                 .stAlert {white-space:pre-wrap;}
-                .row-widget.stButton {text-align:right;}
-                .st-bk,[kind="primary"],[role="alert"],[data-baseweb="textarea"] {border-radius: 8px;}
+                .st-bk,[role="alert"],input[type],
+                [data-baseweb="input"],
+                [data-baseweb="textarea"],button[kind],
+                [data-testid="stForm"] {border-radius: 8px;}
                 </style>
                 """
 

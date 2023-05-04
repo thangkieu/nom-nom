@@ -2,6 +2,7 @@ import os
 import streamlit as st
 from langchain import PromptTemplate
 from utils.llm_models import summarise
+from utils.feedbacks import render_feedbacks
 
 template = """
     You are an AI assistant that helps users summarise their text.
@@ -12,6 +13,9 @@ template = """
 
 
 def write_summarisation():
+    if not 'sum_response' in st.session_state:
+        st.session_state.sum_response = ""
+
     text = ''
     tone = 'Neutral'
     paragraph_no = 3
@@ -38,12 +42,17 @@ def write_summarisation():
 
     # ---- Result ----
     st.subheader('Result')
-    st_prompt_exp = st.expander('Prompt Template', False)
+    st_prompt_exp = st.expander('**ACTUAL PROMPT**', False)
     st_prompt_exp.info(template)
-
-    st_resp_exp = st.expander('Response', True)
+    st_resp_exp = st.expander('**RESPONSE**', True)
 
     if is_summary_clicked:
         with st.spinner('Summarising...'):
             azure_resp = summarise(prompt_str)
-            st_resp_exp.success(azure_resp)
+            st.session_state.sum_response = azure_resp
+
+    if st.session_state.sum_response:
+        st_resp_exp.success(st.session_state.sum_response)
+
+        render_feedbacks(label1="Summarisation",
+                         label2=st.session_state.sum_response)
