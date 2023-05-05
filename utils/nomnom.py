@@ -48,5 +48,5 @@ def write_nomnom():
     if st.session_state.nom_response:
         st_resp_exp.success(st.session_state.nom_response)
 
-        render_feedbacks(label1="NOMNOM",
+        render_feedbacks(name="nomnom", label1="NOMNOM",
                          label2=st.session_state.nom_response)

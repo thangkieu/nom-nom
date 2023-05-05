@@ -2,9 +2,10 @@ import streamlit as st
 import requests
 
 
-def render_feedbacks(label1: str = None, label2: str = None):
+def render_feedbacks(name: str,
+                     label1: str = None, label2: str = None):
 
-    form = st.form("feedback_form")
+    form = st.form(key=f"{name}_feedback_form")
     feedback = form.radio(
         "How would you rate this response?", ("👍", "👎"), horizontal=True)
     comment = form.text_area("Additional comments (optional)")
@@ -22,6 +23,7 @@ def render_feedbacks(label1: str = None, label2: str = None):
                               "Authorization": f"Bearer {st.secrets.get('JWT_TOKEN')}"
         })
         resp = r.json()
+        print(resp)
         # trigger latios
         latios_url = resp.get('short_url')
         if latios_url:

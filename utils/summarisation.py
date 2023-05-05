@@ -54,5 +54,5 @@ def write_summarisation():
     if st.session_state.sum_response:
         st_resp_exp.success(st.session_state.sum_response)
 
-        render_feedbacks(label1="Summarisation",
+        render_feedbacks(name="summarisation", label1="Summarisation",
                          label2=st.session_state.sum_response)
