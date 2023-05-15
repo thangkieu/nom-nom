@@ -21,12 +21,12 @@ def write_summarisation():
     paragraph_no = 3
     length = 20
 
-    st_input_exp = st.expander('Insert your text here', True)
+    st_input_exp = st.expander('📝 **INSERT YOUR TEXT HERE**', True)
     text = st_input_exp.text_area('summarisation textarea',
                                   height=200, label_visibility='collapsed')
 
     # ----- Configuration ----
-    st_config_exp = st.expander('Summarisation\'s Configuration', False)
+    st_config_exp = st.expander('⚙️ **CONFIGURATIONS**', False)
     tone = st_config_exp.radio(
         'Style of Summarisation', ('Professional', 'Neutral', 'Humourous'), index=1, horizontal=True)
     length = st_config_exp.number_input(

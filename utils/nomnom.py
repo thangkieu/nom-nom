@@ -23,7 +23,7 @@ def write_nomnom():
         st.session_state.nom_response = ""
 
     noms = ''
-    with st.expander('Insert all of your NOMs here', True):
+    with st.expander('📝 **INSERT ALL OF YOUR NOMs HERE**', True):
         noms = st.text_area('Separate by newline', height=200)
 
     is_generate = st.button(

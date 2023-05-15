@@ -14,10 +14,29 @@ def write_footer():
                 <style>
                 footer {display: none;}
                 .stAlert {white-space:pre-wrap;}
-                .st-bk,[role="alert"],input[type],
-                [data-baseweb="input"],
+                .st-bk,[role="alert"],input[type]:not([type="number"]),
+                [data-baseweb="input"]:not(:has([type="number"])),
                 [data-baseweb="textarea"],button[kind],
-                [data-testid="stForm"] {border-radius: 8px;}
+                [data-testid="stForm"], .focused.focused {
+                    border-radius: 8px;
+                }
+                [data-baseweb="input"]:has([type="number"]) {
+                    border-top-left-radius: 8px;
+                    border-bottom-left-radius: 8px;
+                }
+                button.step-up.step-up {
+                    border-top-right-radius: 8px;
+                    border-bottom-right-radius: 8px;
+                }
+                [role="tab"] {
+                    border-radius: 8px;
+                    padding: 0 16px;
+                    height: 30px;
+                    margin-bottom: 4px;
+                }
+
+                [role="tab"].st-da,[role="tab"]:focus { background-color: #f1f2ff;  }
+                .st-d2 { gap: 0.5rem }
                 </style>
                 """
 

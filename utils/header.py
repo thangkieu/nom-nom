@@ -17,7 +17,7 @@ def write_header(heading: str, description: str):
     st.warning('**This application is in Alpha version**. You should avoid using it for general fact-finding and information retrieval and must never trust the responses completely.')
 
     # Add information section
-    with st.expander(f"{heading}'s Description".upper(), False):
+    with st.expander(f"**DESCRIPTION**".upper(), False):
         st.write(description)
 
     # st.divider()
