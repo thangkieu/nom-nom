@@ -1,12 +1,14 @@
 import streamlit as st
 
+from langchain import PromptTemplate
+
 from langchain.chat_models import AzureChatOpenAI
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.docstore.document import Document
 from langchain.chains.summarize import load_summarize_chain
 
 
-def summarise(prompt: str = ''):
+def summarise(input: str = '', prompt=None):
     env_var = st.secrets.get('Azure')
 
     llm = AzureChatOpenAI(deployment_name=env_var.get('API_ENGINE'),
@@ -17,9 +19,11 @@ def summarise(prompt: str = ''):
 
     text_splitter = CharacterTextSplitter()
 
-    texts = text_splitter.split_text(prompt)
+    texts = text_splitter.split_text(input)
     docs = [Document(page_content=t) for t in texts[:3]]
-    chain = load_summarize_chain(llm, chain_type="map_reduce")
+
+    chain = load_summarize_chain(llm, chain_type="map_reduce",
+                                 map_prompt=prompt, combine_prompt=prompt)
     resp = chain.run(docs)
 
     return resp

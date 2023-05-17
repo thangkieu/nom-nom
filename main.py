@@ -6,9 +6,10 @@ from utils.nomnom import write_nomnom
 from utils.summarisation import write_summarisation
 
 write_header(heading="Summariser",
-             description="The tool would take in a long, complicated documents or statements and use GPT to generate a summary that captures the main points in simple language")
+             description="A summarizer app is particularly useful for tasks that involve longer texts. It can help users quickly understand the main ideas of a document without having to read the entire thing. Additionally, for tasks that involve multiple scribes, this summarizer apps offer the option to condense multiple notes, which can save time and improve collaboration.")
 
-summarisation, nomnom = st.tabs(["Summarisation", "NOM summarisation"])
+summarisation, nomnom = st.tabs(
+    ["Summarisation", "Multiple Notes Summarisation"])
 
 with summarisation:
     write_summarisation()

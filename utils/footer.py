@@ -13,7 +13,6 @@ def write_footer():
     hide_streamlit_style = """
                 <style>
                 footer {display: none;}
-                .stAlert {white-space:pre-wrap;}
                 .st-bk,[role="alert"],input[type]:not([type="number"]),
                 [data-baseweb="input"]:not(:has([type="number"])),
                 [data-baseweb="textarea"],button[kind],
@@ -34,9 +33,14 @@ def write_footer():
                     height: 30px;
                     margin-bottom: 4px;
                 }
-
                 [role="tab"].st-da,[role="tab"]:focus { background-color: #f1f2ff;  }
                 .st-d2 { gap: 0.5rem }
+                pre:has(.language-toml) { 
+                    background-color: rgba(28, 131, 225, 0.1); 
+                    color: rgb(0, 66, 128); 
+                }
+                .language-toml {white-space: pre-wrap !important;}
+                hr {margin: 1em 0}
                 </style>
                 """
 
